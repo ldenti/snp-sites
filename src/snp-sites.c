@@ -70,9 +70,6 @@ static int generate_snp_sites_generic(char filename[],
                         get_pseudo_reference_sequence());
     }
 
-
-    printf("%d %d %d", output_phylip_file, output_multi_fasta_file, output_reference);
-
     if (output_phylip_file) {
         char phylip_output_filename[FILENAME_MAX];
         strncpy(phylip_output_filename, output_filename_base, FILENAME_MAX);
