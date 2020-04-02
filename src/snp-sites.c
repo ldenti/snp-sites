@@ -71,6 +71,8 @@ static int generate_snp_sites_generic(char filename[],
     }
 
 
+    printf("%d %d %d", output_phylip_file, output_multi_fasta_file, output_reference);
+
     if (output_phylip_file) {
         char phylip_output_filename[FILENAME_MAX];
         strncpy(phylip_output_filename, output_filename_base, FILENAME_MAX);
@@ -94,6 +96,16 @@ static int generate_snp_sites_generic(char filename[],
         create_fasta_of_snp_sites(multi_fasta_output_filename, get_number_of_snps(), bases_for_snps,
                                   get_sequence_names(), get_number_of_samples(), output_reference,
                                   get_pseudo_reference_sequence(), get_snp_locations());
+    }
+
+    if(output_reference) {
+      // Print the entire reference
+      char pseudo_ref_fasta_output_filename[FILENAME_MAX];
+      strncpy(pseudo_ref_fasta_output_filename, output_filename_base, FILENAME_MAX);
+      strcat(pseudo_ref_fasta_output_filename, ".pseudoreference.fa");
+      FILE *fout = fopen(pseudo_ref_fasta_output_filename, "w");
+      fprintf(fout, ">1\n%s\n", get_pseudo_reference_sequence());
+      fclose(fout);
     }
 
     // free memory

@@ -36,6 +36,7 @@ void create_fasta_of_snp_sites(char filename[], int number_of_snps, char **bases
 
     if (output_reference == 1) {
         fprintf(fasta_file_pointer, ">pseudo_reference_sequence\n");
+	// Maybe this is an error: here it is supposed to print the entire pseudo_reference_sequence (?)
         for (snp_counter = 0; snp_counter < number_of_snps; snp_counter++) {
             fputc(pseudo_reference_sequence[snp_locations[snp_counter]], fasta_file_pointer);
         }
